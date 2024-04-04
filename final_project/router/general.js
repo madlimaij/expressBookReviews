@@ -39,10 +39,10 @@ public_users.get('/isbn/:isbn',function (req, res) {
     return res.status(200).json(books[isbn]);
  });
 
- public_users.get('books/isbn/:isbn',function (req, res) {
+ public_users.get('/books/isbn/:isbn',function (req, res) {
     const isbn = req.params.isbn
 
-    const getBookDetails = new Promise((resolve, reject)=> {
+    const getBookDetails = new Promise((resolve, reject) => {
         resolve(res.status(200).json(books[isbn]))
     });
     getBookDetails.then("Success (11)")
@@ -57,12 +57,11 @@ public_users.get('/author/:author',function (req, res) {
   return res.status(200).json(result);
 });
 
-public_users.get('/author/:author',function (req, res) {
+public_users.get('/books/author/:author',function (req, res) {
   const author = decodeURIComponent(req.params.author.toLowerCase())
   const result = Object.values(books).filter((book)=>{
     if (book["author"].toLowerCase() == author) return book
     })
-
 
     const getBookByAuthor= new Promise((resolve, reject)=> {
         resolve(res.status(200).json(result))
@@ -80,7 +79,7 @@ public_users.get('/title/:title',function (req, res) {
   return res.status(200).json(result);
 });
 
-public_users.get('books/title/:title',function (req, res) {
+public_users.get('/books/title/:title',function (req, res) {
     const title = decodeURIComponent(req.params.title.toLowerCase())
     const result = Object.values(books).filter((book)=>{
         if (book["title"].toLowerCase() == title) return book
